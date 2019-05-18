@@ -40,6 +40,7 @@ void readChar(void);
 void sendChar(char c);
 int __io_putchar(int z);
 int a, b, c;
+int var1;
 int main(void) {
 
 	HAL_Init();                  // inicjalizacja biblioteki
