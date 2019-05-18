@@ -11,8 +11,6 @@
 
 #include "stm32f1xx.h"
 
-
-
 int main(void) {
 
 	HAL_Init();                  // lib init
