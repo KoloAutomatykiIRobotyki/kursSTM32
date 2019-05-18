@@ -77,7 +77,7 @@ void readChar(void) {
 	 */
 	if (__HAL_UART_GET_FLAG(&myUart, UART_FLAG_RXNE)) {
 		uint8_t c;
-		int a;
+
 		HAL_UART_Receive(&myUart, &c, 1, 10);
 		switch (c) {
 		case 'd':
@@ -103,7 +103,7 @@ int * setParameters(void) {
 	char myChar;                        // char to receive
 	char myArray[10] = { 0 };           // array of chars
 	int i = 0, where = 0;               // var to navigate
-	int vectorOfParam[3] = { 0 };           // vector to return
+	static int vectorOfParam[3] = { 0 };           // vector to return
 	printf("Hello! \n");
 	printf("Write vector of int numbers which look like: [a; b; c] \n");
 
