@@ -10,8 +10,9 @@
 
 UART_HandleTypeDef myUart;
 
-void initUartPins(void);
 void initUart(void);
-void SystemClock_Config(void);
+void readChar(void);
+int __io_putchar(int z);
+int * setParameters(void);
 
 #endif /* UARTFUNCTIONS_H_ */
