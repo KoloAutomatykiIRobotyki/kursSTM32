@@ -10,13 +10,53 @@
  */
 
 #include "stm32f1xx.h"
+#include "clock.h"
+#include "timer.h"
+#include "uartFunctions.h"
+
+char arrayOfReveivedChar[4] = { 0 };
+char messageToSend[4] = "Kuba";
 
 int main(void) {
 
 	HAL_Init();                  // lib init
+	SystemClock_Config();        // 72 MHz
+	initTimer();
+	initUart();
+	HAL_UART_Receive_IT(&myUart, (uint8_t*) arrayOfReveivedChar, 4);
 	while (1) {
 
 	}
 }
 
+void TIM4_IRQHandler(void) {
+	HAL_TIM_IRQHandler(&myMainTimer);
+}
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
+	/*
+	 *
+	 * kod do przerwania
+	 *
+	 * */
+	HAL_UART_Transmit_IT(&myUart, (uint8_t*) messageToSend, 4);
+
+}
+
+void USART2_IRQHandler(void) {
+	HAL_UART_IRQHandler(&myUart);
+}
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
+	/*
+	 * @brief in case of recivig data
+	 *
+	 */
+	HAL_UART_Transmit_IT(&myUart, (uint8_t*) arrayOfReveivedChar, 4);
+	HAL_UART_Receive_IT(&myUart, (uint8_t*) arrayOfReveivedChar, 4);
+
+//	sprintf(Data, "Received message: %s\n\r", arrayOfReveivedChar);
+//
+
+}
 
