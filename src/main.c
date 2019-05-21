@@ -13,6 +13,7 @@
 #include "clock.h"
 #include "timer.h"
 #include "uartFunctions.h"
+#include "timerPWM.h"
 
 char arrayOfReveivedChar[4] = { 0 };
 char messageToSend[4] = "Kuba";
@@ -21,9 +22,11 @@ int main(void) {
 
 	HAL_Init();                  // lib init
 	SystemClock_Config();        // 72 MHz
-	initTimer();
 	initUart();
+	initTimer();
+	initTimerPWM();
 	HAL_UART_Receive_IT(&myUart, (uint8_t*) arrayOfReveivedChar, 4);
+	__HAL_TIM_SET_COMPARE(&myTimerPWM,TIM_CHANNEL_2,500);  //50[%]
 	while (1) {
 
 	}
