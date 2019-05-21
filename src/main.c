@@ -44,12 +44,13 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	 * kod do przerwania
 	 *
 	 * */
-	HAL_UART_Transmit_IT(&myUart, (uint8_t*) messageToSend, 4);
+
 
 	if (fillLevel > 1000)
 		fillLevel = 0;
 	fillLevel += 50;
-	__HAL_TIM_SET_COMPARE(&myTimerPWM, TIM_CHANNEL_2, fillLevel);  //50[%]
+	__HAL_TIM_SET_COMPARE(&myTimerPWM, TIM_CHANNEL_2, (uint16_t)fillLevel);  //50[%]
+	HAL_UART_Transmit_IT(&myUart, (uint8_t*) messageToSend, 4);
 }
 
 void USART2_IRQHandler(void) {

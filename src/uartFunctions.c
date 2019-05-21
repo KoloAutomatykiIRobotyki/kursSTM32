@@ -56,7 +56,7 @@ void initUart(void) {
 	// interrupt mode:
 	// uncomment
 
-	HAL_NVIC_SetPriority(USART2_IRQn, 0, 0);
+	HAL_NVIC_SetPriority(USART2_IRQn, 3, 3);
 	HAL_NVIC_EnableIRQ(USART2_IRQn);
 }
 //------------------------------------------------------------------------
