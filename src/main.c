@@ -15,6 +15,8 @@
 #include "uartFunctions.h"
 #include "timerPWM.h"
 
+volatile int fillLevel = 0;
+
 char arrayOfReveivedChar[4] = { 0 };
 char messageToSend[4] = "Kuba";
 
@@ -26,7 +28,7 @@ int main(void) {
 	initTimer();
 	initTimerPWM();
 	HAL_UART_Receive_IT(&myUart, (uint8_t*) arrayOfReveivedChar, 4);
-	__HAL_TIM_SET_COMPARE(&myTimerPWM,TIM_CHANNEL_2,500);  //50[%]
+	__HAL_TIM_SET_COMPARE(&myTimerPWM, TIM_CHANNEL_2, 500);  //50[%]
 	while (1) {
 
 	}
@@ -44,6 +46,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	 * */
 	HAL_UART_Transmit_IT(&myUart, (uint8_t*) messageToSend, 4);
 
+	if (fillLevel > 1000)
+		fillLevel = 0;
+	fillLevel += 50;
+	__HAL_TIM_SET_COMPARE(&myTimerPWM, TIM_CHANNEL_2, fillLevel);  //50[%]
 }
 
 void USART2_IRQHandler(void) {

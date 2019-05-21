@@ -27,7 +27,7 @@ void initTimerPWM(void) {
 	;
 	myTimerPWM.Instance = TIM2;
 	myTimerPWM.Init.CounterMode = TIM_COUNTERMODE_UP;
-	myTimerPWM.Init.Prescaler = 1440;
+	myTimerPWM.Init.Prescaler = 1440-1;
 	myTimerPWM.Init.Period = 1000;
 	myTimerPWM.Init.ClockDivision = 0;
 	myTimerPWM.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
