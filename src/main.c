@@ -1,7 +1,7 @@
 /**
  ******************************************************************************
  * @file    main.c
- * @author  Kuba Sondej scuba
+ * @author  Kuba Sondej & Konrad Sendrowicz
  * @version V1.0
  * @date    09-April-2019
  * @brief   Default main function.
@@ -18,5 +18,4 @@ int main(void) {
 
 	}
 }
-
 

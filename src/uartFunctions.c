@@ -144,6 +144,5 @@ int * setParameters(void) {
  */
 //	sprintf(Data, "Received message: %s\n\r", arrayOfReveivedChar);
 //
-
 //
 //}

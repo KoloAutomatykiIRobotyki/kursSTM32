@@ -9,9 +9,9 @@
 
 void SystemClock_Config(void) {
 	/**
-	  * @brief inicialise clock
-	  * @note set 72 [MHz]
-	  */
+	 * @brief inicialise clock
+	 * @note set 72 [MHz]
+	 */
 
 	RCC_ClkInitTypeDef clkinitstruct = { 0 };
 	RCC_OscInitTypeDef oscinitstruct = { 0 };

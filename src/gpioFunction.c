@@ -7,15 +7,14 @@
 #include "stm32f1xx.h"
 #include "gpioFunction.h"
 
-
-
-void initInputPins(void){
+void initInputPins(void) {
 	/*
 	 * @brief set BUTTON as a input
 	 *
 	 */
 
-	__HAL_RCC_GPIOA_CLK_ENABLE();
+	__HAL_RCC_GPIOA_CLK_ENABLE()
+	;
 	GPIO_InitTypeDef myButton;
 
 	myButton.Pin = BUTTON_PIN;              // set pin
@@ -26,7 +25,6 @@ void initInputPins(void){
 	HAL_GPIO_Init(BUTTON_PORT, &myButton);
 }
 
-
 void initOutputPins(void) {
 	/*
 	 * @brief set the LED_RED output
@@ -34,7 +32,8 @@ void initOutputPins(void) {
 	 */
 
 	// 1) Clock
-	__HAL_RCC_GPIOA_CLK_ENABLE();
+	__HAL_RCC_GPIOA_CLK_ENABLE()
+	;
 	// 2) Declare of var
 	GPIO_InitTypeDef myLed;
 	// 3) Fill the fields
@@ -46,14 +45,15 @@ void initOutputPins(void) {
 	HAL_GPIO_Init(LED_RED_PORT, &myLed);
 }
 
-void initInterruptsWithPins(void){
+void initInterruptsWithPins(void) {
 	/*
 	 * @brief interrupts
 	 *
 	 *
 	 */
 
-	__HAL_RCC_GPIOA_CLK_ENABLE();
+	__HAL_RCC_GPIOA_CLK_ENABLE()
+	;
 	GPIO_InitTypeDef myButton;
 
 	myButton.Pin = GPIO_PIN_11;
@@ -62,7 +62,7 @@ void initInterruptsWithPins(void){
 	myButton.Speed = GPIO_SPEED_FREQ_LOW;
 	HAL_GPIO_Init(GPIOB, &myButton);
 
-	HAL_NVIC_SetPriority(EXTI15_10_IRQn,0,0); // set priority
+	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0); // set priority
 	HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);       // enable of interrupts
 
 }
