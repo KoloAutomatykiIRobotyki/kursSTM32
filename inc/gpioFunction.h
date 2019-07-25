@@ -8,10 +8,10 @@
 #ifndef GPIOFUNCTION_H_
 #define GPIOFUNCTION_H_
 
-#define BUTTON_PIN GPIO_PIN_11
+#define BUTTON_PIN GPIO_PIN_12
 #define BUTTON_PORT GPIOA
-#define LED_RED_PIN GPIO_PIN_10
-#define LED_RED_PORT GPIOA
+#define LED_RED_PIN GPIO_PIN_13
+#define LED_RED_PORT GPIOC
 
 void initInputPins(void);
 void initOutputPins(void);

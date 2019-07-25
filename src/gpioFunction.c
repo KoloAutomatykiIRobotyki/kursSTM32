@@ -34,7 +34,7 @@ void initOutputPins(void) {
 	 */
 
 	// 1) Clock
-	__HAL_RCC_GPIOA_CLK_ENABLE();
+	__HAL_RCC_GPIOC_CLK_ENABLE();
 	// 2) Declare of var
 	GPIO_InitTypeDef myLed;
 	// 3) Fill the fields
@@ -56,14 +56,14 @@ void initInterruptsWithPins(void){
 	__HAL_RCC_GPIOA_CLK_ENABLE();
 	GPIO_InitTypeDef myButton;
 
-	myButton.Pin = GPIO_PIN_11;
-	myButton.Mode = GPIO_MODE_IT_RISING;    // On rising edge
-	myButton.Pull = GPIO_PULLUP;
+	myButton.Pin = BUTTON_PIN;
+	myButton.Mode = GPIO_MODE_IT_RISING_FALLING;    // On rising edge
+	myButton.Pull = GPIO_PULLDOWN;
 	myButton.Speed = GPIO_SPEED_FREQ_LOW;
 	HAL_GPIO_Init(GPIOB, &myButton);
 
-	HAL_NVIC_SetPriority(EXTI15_10_IRQn,0,0); // set priority
-	HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);       // enable of interrupts
+	HAL_NVIC_SetPriority(EXTI3_IRQn,0,0); // set priority
+	HAL_NVIC_EnableIRQ(EXTI3_IRQn);       // enable of interrupts
 
 }
 

@@ -1,6 +1,17 @@
 /**
  ******************************************************************************
  * @file    main.c
+ * @author  Kuba Sondej & Konrad Sendrowicz
+ * @version V1.0
+ * @date    09-April-2019
+ * @brief   Default main function.
+ * @desc    Program
+ ******************************************************************************
+ */
+
+/**
+ ******************************************************************************
+ * @file    main.c
  * @author  Kuba Sondej scuba
  * @version V1.0
  * @date    09-April-2019
@@ -28,7 +39,7 @@ int main(void) {
 	initTimer();
 	initTimerPWM();
 	HAL_UART_Receive_IT(&myUart, (uint8_t*) arrayOfReveivedChar, 4);
-	__HAL_TIM_SET_COMPARE(&myTimerPWM, TIM_CHANNEL_2, 500);  //50[%]
+	__HAL_TIM_SET_COMPARE(&myTimerPWM, TIM_CHANNEL_2, 500);  // 50[%]
 	while (1) {
 
 	}
@@ -39,17 +50,11 @@ void TIM4_IRQHandler(void) {
 }
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
-	/*
-	 *
-	 * kod do przerwania
-	 *
-	 * */
-
 
 	if (fillLevel > 1000)
 		fillLevel = 0;
 	fillLevel += 50;
-	__HAL_TIM_SET_COMPARE(&myTimerPWM, TIM_CHANNEL_2, (uint16_t)fillLevel);  //50[%]
+	__HAL_TIM_SET_COMPARE(&myTimerPWM, TIM_CHANNEL_2, (uint16_t )fillLevel); //50[%]
 	HAL_UART_Transmit_IT(&myUart, (uint8_t*) messageToSend, 4);
 }
 
